@@ -9,27 +9,28 @@ export default function Home() {
 		<h1 class="font-serif text-white">Jack Dockus</h1>
 	     </div>
 		<div class="flex items-center gap-6">
-		  <a class="text-sm/6 text-white" href="">Link</a>
+		  <a class="text-sm/6 text-white" href="/ipLookUp">Link</a>
 		</div>
 	  </div>
 	</div>
 
-	  <div class="md:flex-initial items-center bg-gray-700 grid grid-cols-3 grid-flow-row auto-rows-max gap-y-10">
+	  <div class="flex justify-end bg-gray-700 gap-y-10">
 
-	 	 <div class="flex-initial m-10 col-2 rounded-xl bg-indigo-950 px-10 py-4 shadow-lg outline-2 outline-offset-1 outline-indigo-900">
+	 	 <div class="m-10 w-fit rounded-xl bg-indigo-950 px-10 py-4 shadow-lg outline-2 outline-offset-1 outline-indigo-900">
 		  <div>
-	    		<div class="text-xl font-medium text-pink-200">Home Page</div>
-	    		<p class="text-gray-500 dark:text-gray-400">I made random stuff!</p>
+	    		<div class="text-xl font-medium text-pink-200">You're Home!!</div>
+	    		<p class="text-gray-500 dark:text-gray-400">Take a Seat</p>
+			<Image 
+			src="/HomePaint.png" 
+			width={50}
+			height={50}
+			alt="home"
+			/>
 		   </div>
 		</div>
-
-	<div class="mx-auto items-center bg-gray-700">
-		<button class="outline-1 outline-offset-0 outline-pink-300 bg-orange-300 
-		transition duration-700 ease-in-out hover:-translate-y-1 hover:scale-200 hover:bg-orange-600">Button</button>
-	</div>
-
      </div>
    </html>
   );
 }
+
 
