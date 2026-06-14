@@ -2,6 +2,7 @@
 
 import * as XLSX from "xlsx";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function excelDataProcessing() {
   const [excelData, setExcelData] = useState([]);
@@ -139,22 +140,22 @@ export default function excelDataProcessing() {
   ).length;
 
   return (
-    <div className="bg-gray-700">
+    <div className="bg-gray-700 font-serif">
       <div className="fixed inset-x-0 top-0 h-8 bg-slate-800 border-b border-slate-600">
         <div className="flex items-center justify-between gap-8 mt-1 px-4 sm:px-6">
           <div className="flex items-center gap-4">
             <h1 className="font-serif text-white">Jack Dockus</h1>
           </div>
           <div className="flex items-center gap-6">
-            <a className="text-sm/6 text-white" href="/">
+            <Link className="text-sm/6 text-white" href="/">
               Home
-            </a>
-            <a className="text-sm/6 text-white" href="/ipLookUp">
+            </Link>
+            <Link className="text-sm/6 text-white" href="/ipLookUp">
               Link
-            </a>
-            <a className="text-sm/6 text-white" href="/excelDataP">
+            </Link>
+            <Link className="text-sm/6 text-white" href="/excelDataP">
               Excel
-            </a>
+            </Link>
           </div>
         </div>
       </div>

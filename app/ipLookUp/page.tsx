@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function MyIpPage() {
   const [ip, setIp] = useState<string>("Loading...");
@@ -35,16 +36,16 @@ export default function MyIpPage() {
           <div className="flex items-center gap-4">
             <h1 className="font-serif text-white">Jack Dockus</h1>
           </div>
-          <div className="flex items-center gap-6">
-            <a className="text-sm/6 text-white" href="/">
+          <div className="flex items-center gap-6 font-serif">
+            <Link className="text-sm/6 text-white" href="/">
               Home
-            </a>
-            <a className="text-sm/6 text-white" href="excelDataP">
-              Excel
-            </a>
-            <a className="text-sm/6 text-white" href="/ipLookUp">
+            </Link>
+            <Link className="text-sm/6 text-white" href="/ipLookUp">
               Link
-            </a>
+            </Link>
+            <Link className="text-sm/6 text-white" href="excelDataP">
+              Excel
+            </Link>
           </div>
         </div>
       </div>
