@@ -9,7 +9,7 @@ const geist = Geist({
 
 export default function RootLayout({children}) {
 	return(
-		<html lang="en" className="bg-slate-950">
+		<html lang="en" className="bg-black">
 		<body>{children}</body>
 		</html>
 	)

@@ -140,30 +140,56 @@ export default function excelDataProcessing() {
   ).length;
 
   return (
-    <div className="bg-gray-700 font-serif">
-      <div className="fixed inset-x-0 top-0 h-8 bg-slate-800 border-b border-slate-600">
-        <div className="flex items-center justify-between gap-8 mt-1 px-4 sm:px-6">
-          <div className="flex items-center gap-4">
-            <h1 className="font-serif text-white">Jack Dockus</h1>
-          </div>
-          <div className="flex items-center gap-6">
-            <Link className="text-sm/6 text-white" href="/">
-              Home
-            </Link>
-            <Link className="text-sm/6 text-white" href="/ipLookUp">
-              Link
-            </Link>
-            <Link className="text-sm/6 text-white" href="/excelDataP">
-              Excel
-            </Link>
-          </div>
-        </div>
+    <div className="bg-mauve-800 font-serif">
+      <div className="ml-3 flex flex-row gap-2">
+        <Link href="/">
+          <svg
+            viewBox="0 0 200 230"
+            width="50"
+            height="80"
+            fill="transparent"
+            stroke="white"
+            strokeWidth="2.0"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M 100 10 L 100 145" />
+            <path
+              d="M 100 10 L 125 18 L 100 26 Z"
+              fill="transparent"
+              stroke="white"
+              initial="hidden"
+              animate="visible"
+            />
+            <path
+              d="M 100 30 L 168 132 L 100 140 Z"
+              fill="transparent"
+              stroke="white"
+            />
+            <path
+              d="M 100 45 L 38 122 L 100 138 Z"
+              fill="transparent"
+              stroke="white"
+            />
+            <path
+              d="M 30 148 L 45 165 Q 100 182 155 165 L 170 148 Z"
+              fill="transparent"
+              stroke="white"
+            />
+            <path
+              d="M 10 178 Q 50 168 90 178 Q 130 188 170 178 Q 195 171 210 178"
+              fill="transparent"
+              stroke="white"
+            />
+          </svg>
+        </Link>
+	<p className="font-serif mt-5">Excel Sorter</p>
       </div>
 
-      <div className="bg-gray-700 mt-10 flex justify-center">
+      <div className="bg-mauve-800 mt-10 flex justify-center">
         <h1 font="serif">Enter an Excel Sheet</h1>
       </div>
-      <div className="bg-gray-700 flex justify-center">
+      <div className="bg-mauve-800 flex justify-center">
         <input
           className="outline-1 outline-gray-500 gap-4 w-fit"
           type="file"
@@ -186,28 +212,28 @@ export default function excelDataProcessing() {
 
       {filteredData.length > 0 && (
         <div className="mt-5 overflow-x-auto p-3">
-          <table className="border-4 border-sky-700">
+          <table className="border-1 border-collapse border-gray-300/30">
             <thead>
               <tr>
-                <th className="p-1 border border-sky-400">Issue</th>
-                <th className="p-1 border border-sky-400"> # Count</th>
+                <th className="p-1 border-2 border-gray-300/30">Issue</th>
+                <th className="p-1 border border-gray-300/30"> # Count</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th className="border border-sky-400 px-2">
+                <th className="border border-gray-300/30 px-2">
                   <button onClick={(e) => setSearch("imprivata_group")}>
                     Imprivata
                   </button>
                 </th>
-                <td className="border border-sky-400 pl-2">{imprivataCount}</td>
+                <td className="border border-gray-300/30 pl-2">{imprivataCount}</td>
               </tr>
 
               <tr>
-                <th className="border border-sky-400 px-2">
+                <th className="border border-gray-300/30 px-2">
                   <button onClick={(e) => setSearch("zscope")}>zScope</button>
                 </th>
-                <td className="border border-sky-400 pl-2">{zScopeCount}</td>
+                <td className="border border-gray-300/30 pl-2">{zScopeCount}</td>
               </tr>
 
               <tr>
