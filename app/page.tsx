@@ -1,137 +1,104 @@
 "use client";
+import { Michroma } from "next/font/google";
+import * as THREE from "three";
+import { useMemo, useRef, useLayoutEffect, useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Mesh, PlaneGeometry } from "three";
+import { Gradient } from "./background.js";
+import "./styles.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { motion, Variants } from "motion/react";
-import { useRef, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
-function TableRow({ name, description, href }) {
-  const router = useRouter();
+const WaterBackground = dynamic(() => import("@/components/WaterBackground"), {
+  ssr: false,
+});
+
+const fontmich = Michroma({
+  weight: "400",
+  display: "swap",
+  variable: "--font-michroma",
+  subsets: ["latin"],
+});
+
+export default function Page() {
+  const [action, setAction] = useState("close");
+  function handleClick() {
+    setAction("about");
+  }
+
   return (
-    <tr
-      onClick={() => router.push(href)}
-      className="cursor-pointer border-b border-white/30 hover:bg-mauve-400/50 transition"
-    >
-      <td className="px-4 font-serif text-md">{name}</td>
-      <td className="py-1 px-4 font-serif text-sm">
-        {description}
-      </td>
-    </tr>
-  );
-}
+    <main className={`absolute inset-0 ${fontmich.className} mx-[10%]`}>
+      <div className="flex justify-center items-center flex-col mt-[20%] gap-10">
 
-const draw: Variants = {
-  hidden: {
-    pathLength: 0,
-    opacity: 0,
-  },
-  visible: {
-    pathLength: 1,
-    opacity: 1,
-    transition: {
-      pathLength: {
-        type: "tween",
-        duration: 2,
-        ease: "linear",
-      },
-    },
-  },
-};
+        <div className="
+	relative rounded-3xl border border-cyan-300/25 
+	bg-slate-950/30 backdrop-blur-xl p-8 shadow-[0_0_40px_rgba(34,211,238,.18)] 
+	transition-all duration-500 
+	hover:border-cyan-200/50 hover:shadow-[0_0_70px_rgba(34,211,238,.35)] w-fit cursor-pointer">
 
-export default function Home() {
-  const router = useRouter();
-  return (
-    <div className="bg-mauve-800 h-[100vh]">
-      <div className="flex justify-center">
-        <motion.svg
-          viewBox="0 0 200 230"
-          width="150"
-          height="180"
-          fill="transparent"
-          stroke="white"
-          strokeWidth="2.0"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.path
-            d="M 100 10 L 100 145"
-            variants={draw}
-            initial="hidden"
-            animate="visible"
-          />
-          <motion.path
-            d="M 100 10 L 125 18 L 100 26 Z"
-            fill="transparent"
-            stroke="white"
-            initial="hidden"
-            animate="visible"
-            variants={draw}
-          />
-          <motion.path
-            d="M 100 30 L 168 132 L 100 140 Z"
-            fill="transparent"
-            stroke="white"
-            variants={draw}
-          />
-          <motion.path
-            d="M 100 45 L 38 122 L 100 138 Z"
-            fill="transparent"
-            stroke="white"
-            variants={draw}
-          />
-          <motion.path
-            d="M 30 148 L 45 165 Q 100 182 155 165 L 170 148 Z"
-            fill="transparent"
-            stroke="white"
-            variants={draw}
-          />
-          <motion.path
-            d="M 10 178 Q 50 168 90 178 Q 130 188 170 178 Q 195 171 210 178"
-            fill="transparent"
-            stroke="white"
-            variants={draw}
-          />
-        </motion.svg>
+          <p className="text-7xl text-cyan-100 neon-text">Boat</p>
+        </div>
+        <div className=" text-cyan-100 flex flex-col items-center neon-text ">
+          <button
+            className="neon-text transition-all cursor-pointer duration-500 hover:border-cyan-200/50 hover:shadow-[0_0_70px_rgba(34,211,238,.35)] "
+            onClick={handleClick}
+          >
+            About
+          </button>
+          <Link
+            href="/raspStats"
+            className="mt-5 transition-all cursor-pointer duration-500 hover:border-cyan-200/50 hover:shadow-[0_0_70px_rgba(34,211,238,.35)] "
+          >
+            Stats
+          </Link>
+	  <Link
+	  href="/excelDataP"
+	  className="mt-5 transition-all cursor-pointer duration-500 hover:border-cyan-200/50 hover:shadow-[0_0_70px_rgba(34,211,238,.35)]">
+	  Excel Sorter
+	  </Link>
+        </div>
+      </div>
+      <div className="fixed inset-0 -z-10">
+        <Canvas camera={{ position: [0, -20, 20], fov: 75 }}>
+          <WaterBackground />
+          <ambientLight intensity={0.1} />
+          <directionalLight position={[0, 30, 0]} intensity={10} />
+          <fog attach="fog" args={["#0b4275", 1, 120]} />
+          <color attach="background" args={["#001220"]} />
+        </Canvas>
       </div>
 
-      <p className="font-serif text-xs mx-8">Jacks(AKA Boats) Projects</p>
-      <hr className="border-t border-white/20 mb-2 mx-8" />
 
-      <table className="border-collapse mx-8 flex justify-center">
-        <tbody>
-          <TableRow
-            name="Excel Sorter"
-            description="Excel Spreadsheet Sorter"
-            href="/excelDataP"
-          />
-          <TableRow
-            name="RaspPi Stats"
-            description="Current Stats of my Raspberry Pi"
-            href="/raspStats"
-          />
-	  <TableRow
-	  name="testing"
-	  description="testing"
-	  href="/testing"
-	  />
-        </tbody>
-      </table>
-    </div>
+
+
+
+      {action === "about" && (
+        <div
+          className="
+ absolute inset-0 flex justify-center items-center 
+ "
+        >
+            <div
+              className="
+	      relative
+	      mt-[20vh]
+	      z-2
+	      glass-panel
+	      w-[650px] 
+	      max-w-[90vw] 
+	      p-8"
+            >
+              <div className="z-2 neon-text flex justify-center">
+	      <button onClick={() => setAction("close")}
+	      className="absolute top-4 right-4 neon-text "
+	      >x</button>
+                <p className="text-sm">My name is Jack, but online I go by boat.</p>
+              </div>
+            </div>
+        </div>
+      )}
+    </main>
   );
 }
-
-
-/*
-
-<td className="w-1/2 font-serif text-left text-xs px-4">
-              Projects
-            </td>
-            <td className="w-1/2 font-serif text-left text-xs px-4">
-              Description
-            </td>
-
- *
- *
-   */

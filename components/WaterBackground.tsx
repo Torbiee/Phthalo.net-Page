@@ -54,13 +54,13 @@ export default function WaterBackground() {
 	  
         />
       </mesh>
-      <mesh position={[0, 30, 0]}>
+      <mesh position={[30, 30, 0]}>
         <sphereGeometry args={[2]} />
-        <meshBasicMaterial color="white" />
+        <meshBasicMaterial color="#f7ffff"/>
       </mesh>
-      <mesh position={[0, 30, 0]}>
+      <mesh position={[30, 30, 0]}>
       <sphereGeometry args={[2.3]} />
-      <meshBasicMaterial color="white" opacity={[0.5]}/>
+      <meshBasicMaterial color="#f7ffff" opacity={[0.2]}/>
       </mesh>
     </>
   );
